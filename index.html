@@ -1,0 +1,858 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14112B">
+  <title>Portfolio - Adriel Cornelius Sosa Salle</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #14112B;
+      --surface: #201B44;
+      --ink: #F3F0FF;
+      --muted: #B4AEDB;
+      --accent: #FF4F7B;
+      --accent-2: #FFD23F;
+      --font-head: 'Bricolage Grotesque', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --radius: 14px;
+      --shadow: 6px 6px 0 #000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      font-size: 17px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* NAVBAR */
+    header.nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .nav .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 60px;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .nav nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav nav a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .nav nav a:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 72px 0 56px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(40px, 8vw, 84px);
+      line-height: 1;
+      margin: 0 0 40px;
+      letter-spacing: -.02em;
+    }
+
+    .hero h1 mark {
+      background: var(--accent-2);
+      color: #1B1740;
+      padding: 0 .15em;
+      border-radius: 8px;
+    }
+
+    .hero h2 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 42px);
+      margin: 0 0 16px;
+    }
+
+    .hero-about {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+      margin: 0 0 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 12px 22px;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform .12s, box-shadow .12s;
+    }
+
+    .btn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .btn.alt {
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    /* SKILLS */
+    .skill-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    .skill-group h3 {
+      font-family: var(--font-head);
+      font-size: 18px;
+      margin: 0 0 16px;
+    }
+
+    .skills {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .skills img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      background: transparent;
+      border: none;
+      padding: 0;
+      transition: transform .2s ease;
+    }
+
+    .skills img:hover {
+      transform: translateY(-4px);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 56px 0;
+    }
+
+    section h2 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 42px);
+      margin: 0 0 24px;
+      letter-spacing: -.01em;
+    }
+
+    /* PROJECT FILTERS */
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .filters button {
+      font: inherit;
+      font-weight: 700;
+      background: var(--surface);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      padding: 8px 18px;
+      cursor: pointer;
+    }
+
+    .filters button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* PROJECT CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      min-width: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .project-thumb {
+      position: relative;
+      display: block;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--surface);
+      text-decoration: none;
+      color: white;
+    }
+
+    .project-thumb > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+
+    .project-thumb:hover > img {
+      transform: scale(1.05);
+    }
+
+    .project-placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      font-size: 64px;
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      background: linear-gradient(
+        transparent 5%,
+        rgba(0, 0, 0, .88) 100%
+      );
+    }
+
+    .project-overlay h3 {
+      font-family: var(--font-head);
+      font-size: 22px;
+      line-height: 1.2;
+      margin: 0 0 8px;
+    }
+
+    .project-overlay p {
+      color: #F3F0FF;
+      margin: 0;
+      font-size: 14px;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity .3s ease, max-height .3s ease;
+    }
+
+    .project-thumb:hover .project-overlay p,
+    .project-thumb:focus-visible .project-overlay p {
+      opacity: 1;
+      max-height: 120px;
+    }
+
+    .project-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .project-tools span {
+      font-size: 12px;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .3);
+    }
+
+    .empty {
+      color: var(--muted);
+    }
+
+    /* SOCIALS */
+    .social {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      background: transparent;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius);
+      text-decoration: none;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform .12s, box-shadow .12s;
+    }
+
+    .social a:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .social .ic img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 2px solid var(--ink);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 56px 0 40px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav nav {
+        gap: 12px;
+      }
+
+      .nav nav a {
+        font-size: 13px;
+      }
+
+      .nav nav a.hide-sm {
+        display: none;
+      }
+
+      .logo {
+        font-size: 16px;
+      }
+
+      .hero h1 {
+        margin-bottom: 32px;
+      }
+
+      .hero-actions {
+        gap: 14px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-overlay p {
+        opacity: 1;
+        max-height: 120px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="#top" id="logo"></a>
+
+      <nav aria-label="Main navigation">
+        <a class="hide-sm" href="#Projects">Projects</a>
+        <a class="hide-sm" href="#About-Me">About Me</a>
+        <a href="#Socials">Socials</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO + ABOUT ME -->
+    <div class="wrap">
+      <div class="hero">
+        <h1 id="heroTitle"></h1>
+
+        <h2>About Me</h2>
+        <p class="hero-about" id="aboutText"></p>
+
+        <div class="skill-sections">
+          <div class="skill-group">
+            <h3>Programming &amp; Development</h3>
+            <div class="skills" id="programSkills"></div>
+          </div>
+
+          <div class="skill-group">
+            <h3>UI/UX &amp; Design</h3>
+            <div class="skills" id="designSkills"></div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn" href="#Projects">Seek my Projects!</a>
+          <a class="btn alt" href="#Socials">Contact me here!</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section id="Projects">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <div class="filters" id="filters"
+             role="group" aria-label="Filter Projects"></div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <!-- SOCIALS -->
+    <section id="Socials">
+      <div class="wrap">
+        <h2>Socials</h2>
+        <div class="social" id="social"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap" id="footer"></div>
+  </footer>
+
+  <script>
+    /* =========================================
+       1. WEBSITE CONTENT
+       ========================================= */
+
+    const SITE = {
+      name: "Adriel Cornelius Sosa Salle",
+
+      heroTitle: "I Develop <mark>Games</mark>.",
+
+      about:
+        "Third-year student at the Electronic Engineering Polytechnic Institute of Surabaya, majoring in Game Technology. I develop games using Unity and Construct. I enjoy creating games because i can create whatever and whenever i want! :D",
+
+      footer:
+        "© 2026 Adriel. Made with HTML, CSS, and JavaScript."
+    };
+
+
+    /* =========================================
+       2. PROGRAMMING & DEVELOPMENT SKILLS
+       ========================================= */
+
+    const PROGRAM_SKILLS = [
+      { name: "Unity", logo: "img/logos/unity.svg" },
+      { name: "Construct 3", logo: "img/logos/construct.svg" },
+      { name: "HTML5", logo: "img/logos/html5.svg" },
+      { name: "CSS", logo: "img/logos/css.svg" },
+      { name: "JavaScript", logo: "img/logos/javascript.svg" },
+      { name: "C", logo: "img/logos/c.svg" },
+      { name: "C#", logo: "img/logos/csharp.svg" },
+      { name: "C++", logo: "img/logos/cpp.svg" }
+    ];
+
+
+    /* =========================================
+       3. UI/UX & DESIGN SKILLS
+       ========================================= */
+
+    const DESIGN_SKILLS = [
+      { name: "Figma", logo: "img/logos/figma.svg" },
+      { name: "Photoshop", logo: "img/logos/photoshop.svg" },
+      { name: "Premiere Pro", logo: "img/logos/premiere.svg" },
+      { name: "After Effects", logo: "img/logos/after-effects.svg" }
+    ];
+
+
+    /* =========================================
+       4. PROJECT FILTER CATEGORIES
+       ========================================= */
+
+    const CATEGORIES = [
+      { type: "all", label: "All" },
+      { type: "game", label: "Games" }
+    ];
+
+
+    /* =========================================
+       5. PROJECT DATA
+       ========================================= */
+
+    const PROJECTS = [
+      {
+        type: "game",
+        title: "The 'Lightseeker'",
+        desc: "2D Puzzle Platformer Game for Desktop. The player must seek the light to escape the building.",
+        tags: ["Construct 3", "2D", "Game Programmer"],
+        image: "img/projects/light-seeker.png",
+        emoji: "🎮",
+        color: "#FFB3C7",
+        links: [
+          {
+            label: "Play Now!",
+            url: "https://corneliuz.itch.io/the-lightseeker"
+          }
+        ]
+      },
+
+      {
+        type: "game",
+        title: "OK, Mama",
+        desc: "2D Psychological Horror Puzzle Game for Desktop. The player takes the role of Nina, who struggles with mental health problems.",
+        tags: ["Unity", "2D", "UI/UX"],
+        image: "img/projects/ok-mama.png",
+        emoji: "🎮",
+        color: "#C9B8FF",
+        links: [
+          {
+            label: "Play Now!",
+            url: "https://corneliuz.itch.io/ok-mama"
+          }
+        ]
+      },
+
+      {
+        type: "game",
+        title: "Nocthread",
+        desc: "2D Psychological Horror Puzzle Game for Desktop. The player takes the role of Dimas, who is trapped in a continuous time loop.",
+        tags: ["Unity", "2D", "UI/UX"],
+        image: "img/projects/nocthread.png",
+        emoji: "🎮",
+        color: "#C9B8FF",
+        links: [
+          {
+            label: "Play Now!",
+            url: "https://radenharza.itch.io/nocthread"
+          }
+        ]
+      },
+
+      {
+        type: "game",
+        title: "D*mn, That's My Kard",
+        desc: "3D Roguelike Card Game for Desktop. Play as an adventurer who plays Blackjack to defeat monsters.",
+        tags: ["Unity", "3D", "UI/UX"],
+        image: "img/projects/dtmk.jpeg",
+        emoji: "🎮",
+        color: "#C9B8FF",
+        links: [
+          {
+            label: "Play Now!",
+            url: "https://faliharydhka.itch.io/dtmk"
+          }
+        ]
+      },
+
+      {
+        type: "game",
+        title: "GameSaja",
+        desc: "2D Online Multiplayer Educational Card Game for Android. Arrange Aksara Jawa cards to defeat your friends and win.",
+        tags: ["Unity", "2D", "Game Programmer"],
+        image: "img/projects/gamesaja.png",
+        emoji: "🎮",
+        color: "#C9B8FF",
+        links: [
+          {
+            label: "Play Now!",
+            url: "https://corneliuz.itch.io/gamesaja"
+          }
+        ]
+      },
+    ];
+
+
+    /* =========================================
+       6. SOCIAL LINKS
+       ========================================= */
+
+    const SOCIALS = [
+      {
+        icon: "📸",
+        name: "Instagram",
+        logo: "img/logos/instagram.svg",
+        url: "https://www.instagram.com/adrielcorn/"
+      },
+
+      {
+        icon: "💻",
+        name: "GitHub",
+        logo: "img/logos/github.svg",
+        url: "https://github.com/Ronaldriel"
+      },
+
+      {
+        icon: "🎲",
+        name: "Itch.io",
+        logo: "img/logos/itchdotio.svg",
+        url: "https://corneliuz.itch.io/"
+      },
+
+      {
+        icon: "💬",
+        name: "WhatsApp",
+        logo: "img/logos/whatsapp.svg",
+        url: "https://wa.me/628990315327"
+      },
+
+      {
+        icon: "✉️",
+        name: "Email",
+        logo: "img/logos/gmail.svg",
+        url: "mailto:adrielcorneliussosasalle19@gmail.com"
+      },
+
+      {
+        icon: "in",
+        name: "LinkedIn",
+        logo: "img/logos/linkedin.svg",
+        url: "https://www.linkedin.com/in/adriel-cornelius-sosa-salle-963b91348/"
+      }
+    ];
+
+
+    /* =========================================
+       7. INITIALIZE CONTENT
+       ========================================= */
+
+    const $ = id => document.getElementById(id);
+
+    const esc = value =>
+      String(value).replace(/[&<>"]/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;"
+      })[char]);
+
+    $("logo").textContent = SITE.name;
+    $("heroTitle").innerHTML = SITE.heroTitle;
+    $("aboutText").textContent = SITE.about;
+    $("footer").textContent = SITE.footer;
+
+    document.title = SITE.name + " | Portfolio";
+
+
+    /* =========================================
+       8. RENDER SKILL LOGOS
+       ========================================= */
+
+    function renderSkills(containerId, skills) {
+      $(containerId).innerHTML = skills.map(skill => `
+        <img
+          src="${esc(skill.logo)}"
+          alt="${esc(skill.name)}"
+          title="${esc(skill.name)}"
+          loading="lazy"
+          onerror="this.remove()"
+        >
+      `).join("");
+    }
+
+    renderSkills("programSkills", PROGRAM_SKILLS);
+    renderSkills("designSkills", DESIGN_SKILLS);
+
+
+    /* =========================================
+       9. RENDER SOCIAL ICONS
+       ========================================= */
+
+    $("social").innerHTML = SOCIALS.map(social => `
+      <a
+        href="${esc(social.url)}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="${esc(social.name)}"
+        title="${esc(social.name)}"
+      >
+        <span class="ic">
+          <img
+            src="${esc(social.logo)}"
+            alt=""
+            onerror="this.parentElement.textContent='${esc(social.icon)}'"
+          >
+        </span>
+      </a>
+    `).join("");
+
+
+    /* =========================================
+       10. PROJECT FILTERS
+       ========================================= */
+
+    let activeCategory = "all";
+
+    function renderFilters() {
+      $("filters").innerHTML = CATEGORIES.map(category => `
+        <button
+          type="button"
+          data-type="${category.type}"
+          aria-pressed="${category.type === activeCategory}"
+        >
+          ${esc(category.label)}
+        </button>
+      `).join("");
+
+      $("filters").querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => {
+          activeCategory = button.dataset.type;
+          renderFilters();
+          renderProjects();
+        });
+      });
+    }
+
+
+    /* =========================================
+       11. RENDER PROJECTS
+       ========================================= */
+
+    function renderProjects() {
+      const projects = PROJECTS.filter(project =>
+        activeCategory === "all" ||
+        project.type === activeCategory
+      );
+
+      if (!projects.length) {
+        $("grid").innerHTML =
+          '<p class="empty">No projects in this category yet.</p>';
+        return;
+      }
+
+      $("grid").innerHTML = projects.map(project => {
+        const image = project.image
+          ? `
+            <img
+              src="${esc(project.image)}"
+              alt="${esc(project.title)}"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            >
+          `
+          : `
+            <div
+              class="project-placeholder"
+              style="background:${esc(project.color || "#201B44")}"
+            >
+              ${esc(project.emoji || "⭐")}
+            </div>
+          `;
+
+        const validLink = (project.links || []).find(link =>
+          link.url && link.url !== "#"
+        );
+
+        const url = validLink ? validLink.url : "#";
+
+        return `
+          <article class="card">
+            <a
+              class="project-thumb"
+              href="${esc(url)}"
+              ${url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""}
+              aria-label="Open ${esc(project.title)}"
+              ${url === "#" ? 'onclick="return false"' : ""}
+            >
+              ${image}
+
+              <div class="project-overlay">
+                <h3>${esc(project.title)}</h3>
+                <p>${esc(project.desc)}</p>
+
+                <div class="project-tools">
+                  ${(project.tags || []).map(tag => `
+                    <span>${esc(tag)}</span>
+                  `).join("")}
+                </div>
+              </div>
+            </a>
+          </article>
+        `;
+      }).join("");
+    }
+
+    renderFilters();
+    renderProjects();
+  </script>
+</body>
+</html>
