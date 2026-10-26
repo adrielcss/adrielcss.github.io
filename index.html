@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#14112B">
   <title>Portfolio - Adriel Cornelius Sosa Salle</title>
-
+  <link rel="icon" type="image/png" href="favicon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -139,36 +139,6 @@
       margin: 0 0 32px;
     }
 
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 700;
-      text-decoration: none;
-      padding: 12px 22px;
-      border: 2px solid var(--ink);
-      border-radius: var(--radius);
-      box-shadow: 4px 4px 0 var(--ink);
-      transition: transform .12s, box-shadow .12s;
-    }
-
-    .btn:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0 var(--ink);
-    }
-
-    .btn.alt {
-      background: var(--surface);
-      color: var(--ink);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 32px;
-    }
-
     /* SKILLS */
     .skill-sections {
       display: flex;
@@ -215,30 +185,6 @@
       font-size: clamp(28px, 5vw, 42px);
       margin: 0 0 24px;
       letter-spacing: -.01em;
-    }
-
-    /* PROJECT FILTERS */
-    .filters {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-
-    .filters button {
-      font: inherit;
-      font-weight: 700;
-      background: var(--surface);
-      color: var(--ink);
-      border: 2px solid var(--ink);
-      border-radius: 999px;
-      padding: 8px 18px;
-      cursor: pointer;
-    }
-
-    .filters button[aria-pressed="true"] {
-      background: var(--ink);
-      color: var(--bg);
     }
 
     /* PROJECT CARDS */
@@ -410,10 +356,6 @@
         margin-bottom: 32px;
       }
 
-      .hero-actions {
-        gap: 14px;
-      }
-
       .grid {
         grid-template-columns: 1fr;
       }
@@ -469,10 +411,6 @@
           </div>
         </div>
 
-        <div class="hero-actions">
-          <a class="btn" href="#Projects">Seek my Projects!</a>
-          <a class="btn alt" href="#Socials">Contact me here!</a>
-        </div>
       </div>
     </div>
 
@@ -480,8 +418,6 @@
     <section id="Projects">
       <div class="wrap">
         <h2>Projects</h2>
-        <div class="filters" id="filters"
-             role="group" aria-label="Filter Projects"></div>
         <div class="grid" id="grid"></div>
       </div>
     </section>
@@ -546,17 +482,7 @@
 
 
     /* =========================================
-       4. PROJECT FILTER CATEGORIES
-       ========================================= */
-
-    const CATEGORIES = [
-      { type: "all", label: "All" },
-      { type: "game", label: "Games" }
-    ];
-
-
-    /* =========================================
-       5. PROJECT DATA
+       4. PROJECT DATA
        ========================================= */
 
     const PROJECTS = [
@@ -639,6 +565,37 @@
           }
         ]
       },
+      
+      {
+        type: "game",
+        title: "Just Drive, Bro!",
+        desc: "3D Local Multiplayer RaceCar Game for Windows. Goofy race with random time & space theme power-ups.",
+        tags: ["Unity", "3D", "Game Programmer"],
+        image: "img/projects/justdrive.png",
+        emoji: "🎮",
+        color: "#C9B8FF",
+        links: [
+          {
+            label: "Play Now!",
+            url: "https://corneliuz.itch.io/just-drive-bro"
+          }
+        ]
+      },
+      {
+        type: "game",
+        title: "We Got This Bro!",
+        desc: "3D Local Co-op game for Windows. Player play as Archer who kills enemies and Builder to build a way out.",
+        tags: ["Unity", "3D", "Game Programmer"],
+        image: "img/projects/WGTB.png",
+        emoji: "🎮",
+        color: "#C9B8FF",
+        links: [
+          {
+            label: "Play Now!",
+            url: "https://corneliuz.itch.io/we-got-this-bro"
+          }
+        ]
+      }
     ];
 
 
@@ -757,41 +714,11 @@
 
 
     /* =========================================
-       10. PROJECT FILTERS
-       ========================================= */
-
-    let activeCategory = "all";
-
-    function renderFilters() {
-      $("filters").innerHTML = CATEGORIES.map(category => `
-        <button
-          type="button"
-          data-type="${category.type}"
-          aria-pressed="${category.type === activeCategory}"
-        >
-          ${esc(category.label)}
-        </button>
-      `).join("");
-
-      $("filters").querySelectorAll("button").forEach(button => {
-        button.addEventListener("click", () => {
-          activeCategory = button.dataset.type;
-          renderFilters();
-          renderProjects();
-        });
-      });
-    }
-
-
-    /* =========================================
-       11. RENDER PROJECTS
+       10. RENDER PROJECTS
        ========================================= */
 
     function renderProjects() {
-      const projects = PROJECTS.filter(project =>
-        activeCategory === "all" ||
-        project.type === activeCategory
-      );
+      const projects = PROJECTS;
 
       if (!projects.length) {
         $("grid").innerHTML =
@@ -851,7 +778,6 @@
       }).join("");
     }
 
-    renderFilters();
     renderProjects();
   </script>
 </body>
